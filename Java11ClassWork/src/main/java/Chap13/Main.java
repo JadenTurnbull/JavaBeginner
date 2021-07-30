@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Chap12;
+package Chap13;
+
+import Chap12.*;
 
 /**
  *
  * @author jaden
  */
-public class Main {
+public class Main{
 
     public static void main(String[] args) {
         System.out.println("Shirt: ");
         Shirt shirt1 = new Shirt(15, "Hawaiain", 'R', 55.9, 'M', "Short Sleeve");
         shirt1.display();
+        System.out.println(shirt1.doReturn());
 
         System.out.println("\n");
 
