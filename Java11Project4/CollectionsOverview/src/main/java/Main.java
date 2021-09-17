@@ -1,48 +1,110 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Main {
+    private static Map<String, HeavenlyBody> solarSystem = new HashMap<>();
+    private static Set<HeavenlyBody> planets = new HashSet<>();
 
     public static void main(String[] args) {
-	    Theatre theatre = new Theatre("Olympian", 8, 12);
+        HeavenlyBody temp = new HeavenlyBody("Mercury", 88);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
 
-        if(theatre.reserveSeat("D12")) {
-            System.out.println("Please pay for D12");
-        } else {
-            System.out.println("Seat already reserved");
+        temp = new HeavenlyBody("Venus", 225);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        temp = new HeavenlyBody("Earth", 365);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        HeavenlyBody tempMoon = new HeavenlyBody("Moon", 27);
+        solarSystem.put(tempMoon.getName(), tempMoon);
+        temp.addMoon(tempMoon);
+
+        temp = new HeavenlyBody("Mars", 687);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        tempMoon = new HeavenlyBody("Deimos", 1.3);
+        solarSystem.put(tempMoon.getName(), tempMoon);
+        temp.addMoon(tempMoon); // temp is still Mars
+
+        tempMoon = new HeavenlyBody("Phobos", 0.3);
+        solarSystem.put(tempMoon.getName(), tempMoon);
+        temp.addMoon(tempMoon); // temp is still Mars
+
+        temp = new HeavenlyBody("Jupiter", 4332);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        tempMoon = new HeavenlyBody("Io", 1.8);
+        solarSystem.put(tempMoon.getName(), tempMoon);
+        temp.addMoon(tempMoon); // temp is still Jupiter
+
+        tempMoon = new HeavenlyBody("Europa", 3.5);
+        solarSystem.put(tempMoon.getName(), tempMoon);
+        temp.addMoon(tempMoon); // temp is still Jupiter
+
+        tempMoon = new HeavenlyBody("Ganymede", 7.1);
+        solarSystem.put(tempMoon.getName(), tempMoon);
+        temp.addMoon(tempMoon); // temp is still Jupiter
+
+        tempMoon = new HeavenlyBody("Callisto", 16.7);
+        solarSystem.put(tempMoon.getName(), tempMoon);
+        temp.addMoon(tempMoon); // temp is still Jupiter
+
+        temp = new HeavenlyBody("Saturn", 10759);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        temp = new HeavenlyBody("Uranus", 30660);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        temp = new HeavenlyBody("Neptune", 165);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        temp = new HeavenlyBody("Pluto", 248);
+        solarSystem.put(temp.getName(), temp);
+        planets.add(temp);
+
+        System.out.println("Planets");
+        for(HeavenlyBody planet : planets) {
+            System.out.println("\t" + planet.getName());
         }
 
-        if(theatre.reserveSeat("D12")) {
-            System.out.println("Please pay for D12");
-        } else {
-            System.out.println("Seat already reserved");
+        HeavenlyBody body = solarSystem.get("Mars");
+        System.out.println("Moons of " + body.getName());
+        for(HeavenlyBody jupiterMoon: body.getSatellites()) {
+            System.out.println("\t" + jupiterMoon.getName());
         }
 
-        if(theatre.reserveSeat("B13")) {
-            System.out.println("Please pay for B13");
-        } else {
-            System.out.println("Seat already reserved");
+        Set<HeavenlyBody> moons = new HashSet<>();
+        for(HeavenlyBody planet : planets) {
+            moons.addAll(planet.getSatellites());
         }
 
-        List<Theatre.Seat> reverseSeats = new ArrayList<>(theatre.getSeats());
-        Collections.reverse(reverseSeats);
-        printList(reverseSeats);
-
-
-        List<Theatre.Seat> priceSeats = new ArrayList<>(theatre.getSeats());
-        priceSeats.add(theatre.new Seat("B00", 13.00));
-        priceSeats.add(theatre.new Seat("A00", 13.00));
-        Collections.sort(priceSeats, Theatre.PRICE_ORDER);
-        printList(priceSeats);
-    }
-
-
-    public static void printList(List<Theatre.Seat> list) {
-        for(Theatre.Seat seat : list) {
-            System.out.print(" " + seat.getSeatNumber() + " $" + seat.getPrice());
+        System.out.println("All Moons");
+        for(HeavenlyBody moon : moons) {
+            System.out.println("\t" + moon.getName());
         }
-        System.out.println();
-        System.out.println("======================================================================");
+
+        HeavenlyBody pluto = new HeavenlyBody("Pluto", 842);
+        planets.add(pluto);
+
+        for(HeavenlyBody planet : planets) {
+            System.out.println(planet.getName() + ": " + planet.getOrbitalPeriod());
+        }
+
+        Object o = new Object();
+        o.equals(o);
+        "pluto".equals("");
+
+
+
     }
 }
